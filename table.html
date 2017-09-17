@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Table</title>
+	<style type="text/css">
+		.tg  {border-collapse:collapse;border-spacing:0;color: grey;text-align:center;width:auto}
+		.tg tr:nth-child(odd) {text-align:center;background-color: #DCDCDC;}
+		.tg td{text-align:center;font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;}
+		.tg th{text-align:center;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-top-width:1px;border-bottom-width:1px;}
+		.tg .tg-7uzy{vertical-align:top}
+		.tg .tg-baqh{text-align:center;vertical-align:top}
+		.tg .tg-lqy6{text-align:right;vertical-align:top}
+		.tg .tg-yw4l{vertical-align:top}
+		.tg .tg-jjut{text-align:right;vertical-align:top}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$.ajax({
+		  url: 'csv_data.csv',
+		  dataType: 'text',
+		}).done(successFunction);
+
+		function successFunction(data) {
+		  var allRows = data.split(/\r?\n|\r/);
+		  var table = '<table class="tg">';
+		  for (var singleRow = 0; singleRow < allRows.length; singleRow++) {
+		    if (singleRow === 0) {
+		      table += '<thead>';
+		      table += '<tr>';
+		    } else {
+		      table += '<tr>';
+		    }
+		    var rowCells = allRows[singleRow].split(',');
+		    for (var rowCell = 0; rowCell < rowCells.length; rowCell++) {
+		      if (singleRow === 0) {
+		        table += '<th>';
+		        table += rowCells[rowCell];
+		        table += '</th>';
+		      } else {
+		        table += '<td class="tg-7uzy">';
+		        table += rowCells[rowCell];
+		        table += '</td>';
+		      }
+		    }
+		    if (singleRow === 0) {
+		      table += '</tr>';
+		      table += '</thead>';
+		      table += '<tbody>';
+		    } else {
+		      table += '</tr>';
+		    }
+		  } 
+		  table += '</tbody>';
+		  table += '</table>';
+		  $('body').append(table);
+		}
+	</script>
+</head>
+<body>
+<h1>HELLO</h1>
+</body>
+</html>
